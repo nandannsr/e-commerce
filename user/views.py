@@ -138,7 +138,8 @@ def userlogout(request):
     messages.success(request,'You are logged out')
     return redirect(userhome)
 
-
+#OTP views#
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)  
 def otpverify(request):
     if request.method == 'POST':
        phone_otp = request.POST['otp']
@@ -164,8 +165,15 @@ def otpverify(request):
            
     else:
         return render(request,'user/otp_verify.html')
-        
     
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)        
+def otp_try_again(request):
+      user = Account.objects.get(phone_number=request.session['phone_number'])
+      user.delete()
+      messages.info(request,'Please try again')
+      return redirect(register)
+  
+#****************#  
      
 @login_required(login_url= 'userlogin')   
 def userprofile(request):

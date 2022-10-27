@@ -8,6 +8,7 @@ urlpatterns = [
     path('userlogout',views.userlogout, name='userlogout'),
     path('otpverify',views.otpverify,name='otpverify'),
     path('',views.userhome,name='home'),
+    path('otp-try-again',views.otp_try_again,name='otp-try-again'),
     
     #User profile management
     path('profile',views.userprofile, name='profile'),
