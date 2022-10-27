@@ -1,0 +1,92 @@
+{% load static %}
+<!-- /*
+* Bootstrap 5
+* Template Name: Furni
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="favicon.png">
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap4" />
+
+		<!-- Bootstrap CSS -->
+		<link href="{% static 'register/css/bootstrap.min.css' %}" rel="stylesheet">
+		<link href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' %}" rel="stylesheet">
+		<link href="{% static 'register/css/tiny-slider.css' %}" rel="stylesheet">
+		<link href="{% static 'register/css/style.css' %}" rel="stylesheet">
+		<title>Furni Free Bootstrap 5 Template for Furniture and Interior Design Websites by Untree.co </title>
+	</head>
+
+	<body>
+  
+    <!-- {% for message in messages %}
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>{{message}}</strong>
+                
+           </div>
+		   {% endfor %} -->
+
+       <div class="wrapper">
+        <!-- {% include 'messages.html' %} -->
+        <div class="inner">
+          <div class="image-holder">
+            <img src='{% static "register/images/registration-form-4.jpg" %}' alt="">
+          </div>
+
+          <form action="{% url 'register' %}" method="POST">
+            {% for message in messages %}
+		      <div class="alert alert-warning alert-dismissible fade show" id="message" role="alert">
+          <strong>{{message}}</strong>
+                
+           </div>
+		       {% endfor %}
+            {% csrf_token %}
+            <h3>Sign Up  </h3>
+            <div class="form-holder active">
+              {{ forms.first_name }}
+            </div>
+            <div class="form-holder">
+              {{ forms.last_name }}
+            </div>
+            <div class="form-holder">
+             {{ forms.email }}
+            </div>
+            <div class="form-holder">
+              {{ forms.phone_number }}
+            </div>
+            <div class="form-holder">
+              {{forms.password}}
+            </div>
+            <div class="form-holder">
+              {{ forms.confirm_password }}
+            </div>
+           
+            <div class="form-login">
+              <button>Sign up</button>
+              <p>Already Have account? <a href="{% url 'userlogin' %}">Login</a></p>
+            </div>
+            {{ forms.email.errors }}
+            {{ forms.non_field_errors }}
+          </form>
+        </div>
+      </div>
+         <script src="{% static 'register/js/jquery-3.3.1.min.js' %}" ></script>
+         <script src="{% static 'register/js/main.js' %}"></script>
+        <script src="{% static 'register/js/bootstrap.bundle.min.js' %}"></script>
+		<script src="{% static 'register/js/tiny-slider.js' %}"></script>
+		<script src="{% static 'register/js/custom.js' %}"></script>
+    <script type="text/javascript">
+
+     
+    </script>
+	</body>
+
+</html>

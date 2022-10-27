@@ -1,0 +1,241 @@
+{% load static %}
+<!-- /*
+* Bootstrap 5
+* Template Name: Furni
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="favicon.png">
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap4" />
+
+		<!-- Bootstrap CSS -->
+		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+		<link href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' %}" rel="stylesheet">
+		<link href="{% static 'css/tiny-slider.css' %}" rel="stylesheet">
+		<link href="{% static 'css/style.css' %}" rel="stylesheet">
+		<title>Furni Free Bootstrap 5 Template for Furniture and Interior Design Websites by Untree.co </title>
+	</head>
+
+	<body>
+
+		<!-- Start Header/Navigation -->
+		<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+
+			<div class="container">
+				<a class="navbar-brand" href="index.html">n.e.o.n/<span>.</span></a>
+
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				{% for message in messages %}
+				<div class="alert alert-primary alert-dismissible fade show justify-content-center" id="message" role="alert">
+			     {{message}}
+			<button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+			{% endfor %}
+				<div class="collapse navbar-collapse" id="navbarsFurni">
+					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+						<li class="nav-item active">
+							<a class="nav-link" href="{% url 'index' %}">Home</a>
+						</li>
+						<li><a class="nav-link" href="{% url 'adminlogout' %}">Logout</a></li>
+						<li><a class="nav-link" href="{% url 'userlist' %}">Users</a></li>
+						<li><a class="nav-link" href="{% url 'productlist'%}">Products</a></li>
+						<li><a class="nav-link" href="{% url 'categorylist'%}">Category</a></li>
+						<li><a class="nav-link" href="{% url 'brandlist'%}">Brands</a></li>
+						
+					</ul>
+
+					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+						<li><a class="nav-link" href="#"><img src="{% static 'images/user.svg' %}"></a></li>
+						<li><a class="nav-link" href="cart.html"><img src="{% static 'images/cart.svg' %}"></a></li>
+					</ul>
+				</div>
+			</div>
+				
+		</nav>
+		<!-- End Header/Navigation -->
+
+		<!-- Start Hero Section -->
+			<div class="hero">
+				<div class="container">
+					<div class="row justify-content-between">
+						<div class="col-lg-5">
+							<div class="intro-excerpt">
+								<h1>Product List</h1>
+							</div>
+						</div>
+						<div class="col-lg-7">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- End Hero Section -->
+
+		
+
+		<div class="untree_co-section before-footer-section">
+            <div class="container">
+              <div class="row mb-5">
+                <form class="col-md-12" method="post">
+                  <div class="site-blocks-table">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="product-thumbnail">Image</th>
+                          <th class="product-name">ID</th>
+                          <th class="product-price">Name</th>
+						  <th class="product-price">Price</th>
+                          <th class="product-price">Stock</th>
+                          <th class="product-price">Category</th>
+                          <th class="product-price">Brand</th>
+                          <th class="product-price">Actions</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+					 {% for x in values %}
+                        <tr>
+							<td class="product-thumbnail">
+								<img src="{{x.images.url}}" alt="Image" class="img-fluid">
+							  </td>
+                          <td class="product-name">
+                            <h2 class="h5 text-black">{{x.id}}</h2>
+                          </td>
+						  <td class="product-name">
+                            <h2 class="h5 text-black">{{x.product_name}}</h2>
+                          </td>
+                          <td class="product-name">
+                            <h2 class="h5 text-black">{{x.price}}</h2>
+                          </td>
+                          <td class="product-name">
+                            <h2 class="h5 text-black">{{x.stock}}</h2>
+                          </td>
+                          <td class="product-name">
+                            <h2 class="h5 text-black">{{x.category}}</h2>
+                          </td>
+                          <td class="product-name">
+                            <h2 class="h5 text-black">{{x.brand}}</h2>
+                          </td>
+                          <td><form class="m-0" action="{% url 'delete-product' x.id %}" method="POST" >
+							{% csrf_token %}
+		
+							<a data-bs-toggle="modal" data-bs-target="#delete-{{x.id}}">
+								<button type="" class="btn btn-dark btn-block mb-4">Delete</button>
+								
+		
+							</a>
+							<div class="modal fade" id="delete-{{x.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+								 aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+										</div>
+										<div class="modal-body">
+											<p class="text-center" style="color:#000000 ;">Do you really want to delete {{x.product_name}}</p>
+										</div>
+										<div class="modal-footr d-flex justify-content-center p-3">
+												<button class="btn btn-danger " type="submit" style="background:dark-red;">Confirm</button>
+										</div>
+									</div>
+								</div>
+								<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+										integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+										crossorigin="anonymous"></script>
+							</div>
+						</form></a>
+					</td>
+						  <td><a href="{% url 'edit-product' x.id %}" class="btn btn-black btn-sm">Edit</a></td>
+                        </tr>
+        
+						{% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </form>
+              </div>
+        
+              <div class="intro-excerpt">
+				
+				<p><a href="{% url 'addproduct' %}" class="btn btn-secondary me-2">Add</a></p>
+			</div>
+                
+          </div>
+		   
+
+		<!-- Start Footer Section -->
+		<footer class="footer-section">
+			<div class="container relative">
+
+				<div class="d-flex justify-content-center">
+					<nav aria-label="Page navigation example">
+						{% if values.has_other_pages %}
+						<ul class="pagination">
+							{% if values.has_previous %}
+						  <li class="page-item"><a class="page-link" href="?page={{values.previous_page_number}}">Previous</a></li>
+						  {% else %}
+						  <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+						  {% endif %}
+						  
+						  
+						  {% for i in values.paginator.page_range %}
+						    {% if values.number == i %}
+						      <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+							{% else %}
+							<li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+							{% endif %}
+						  {% endfor %}
+						  {% if values.has_next %}
+						  <li class="page-item"><a class="page-link" href="?page={{values.next_page_number}}">Next</a></li>
+						  {% else %}
+						      <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+						  {% endif %}
+						</ul>
+						{% endif %}
+					  </nav>
+				</div>
+                  
+				
+
+				
+
+				<div class="border-top copyright">
+					<div class="row pt-4">
+						<div class="col-lg-6">
+							<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a> <!-- License information: https://untree.co/license/ -->
+                    </p>
+						</div>
+
+						<div class="col-lg-6 text-center text-lg-end">
+							<ul class="list-unstyled d-inline-flex ms-auto">
+								<li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</footer>
+		<!-- End Footer Section -->	
+
+
+		<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+		<script src="{% static 'js/tiny-slider.js' %}"></script>
+		<script src="{% static 'js/custom.js' %}"></script>
+	</body>
+
+</html>

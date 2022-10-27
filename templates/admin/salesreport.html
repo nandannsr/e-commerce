@@ -1,0 +1,197 @@
+{% load static %}
+
+<!-- /*
+* Bootstrap 5
+* Template Name: Furni
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="favicon.png">
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap4" />
+
+		<!-- Bootstrap CSS -->
+		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+		<link href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' %}" rel="stylesheet">
+		<link href="{% static 'css/tiny-slider.css' %}" rel="stylesheet">
+		<link href="{% static '/css/style.css' %}" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+		<title>Furni Free Bootstrap 5 Template for Furniture and Interior Design Websites by Untree.co </title>
+	</head>
+
+	<body>
+
+		
+		<!-- Start Header/Navigation -->
+
+		<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+
+			<div class="container">
+				<a class="navbar-brand" href="index.html">n.e.o.n/<span>.</span></a>
+
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarsFurni">
+					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+						<li class="nav-item active">
+							<a class="nav-link" href="{% url 'index' %}">Home</a>
+						</li>
+						<li><a class="nav-link" href="{% url 'adminlogout' %}">Logout</a></li>
+						<li><a class="nav-link" href="{% url 'userlist' %}">Users</a></li>
+						<li><a class="nav-link" href="{% url 'productlist'%}">Products</a></li>
+						<li><a class="nav-link" href="{% url 'categorylist'%}">Category</a></li>
+						<li><a class="nav-link" href="{% url 'brandlist'%}">Brands</a></li>
+						<li><a class="nav-link" href="{% url 'brandoffers'%}">Offers</a></li>
+						<li><a class="nav-link" href="{% url 'admin-orders' %}">Orders</a></li>
+					</ul>
+
+					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+						<li><a class="nav-link" href="#"><img src="{% static 'images/user.svg' %}"></a></li>
+						
+					</ul>
+				</div>
+			</div>
+				
+		</nav>
+		<!-- End Header/Navigation -->
+
+		
+        <!-- Content Header (Page header) -->
+        <div class="  ml-5"><h2 class="text-dark font-weight-bold">Sales Report</h2></div>
+        
+        <br>
+        
+        
+        <div class="table-responsive d-flex justify-content-center">
+            <table class="table table-bordered table-hover m-3 shadow-lg p-3 mb-5 bg-white rounded  mr-4 w-75" >
+                <thead>
+                <tr style="font-size:20px; font-weight:bold;">
+                    <td class="text-center"  colspan="9">&nbsp;&nbsp;SALES REPORT</td>
+        
+                </tr>
+                <tr class="text-center">
+        
+                    <th scope="col">Id</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Sales Count</th>
+                    <th scope="col">Revenue</th>
+                    <th scope="col">Profit Margin</th>
+        
+        
+                </tr>
+                </thead>
+                <tbody>
+                {% for x in product %}
+                <tr class="text-center">
+        
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{x.product_name}}</td>
+                    <td>{{x.brand}}</td>
+                    <td>{{x.category}}</td>
+                    <td>{{x.stock}}</td>
+                    <td>{{x.price}}</td>
+        
+                    <td>
+                                            {% if x.get_count %}
+                                            {{x.get_count}}
+                                            {%else%}
+                                                0
+                                            {% endif %}
+                                        </td>
+        
+                     <td>
+                                        {% if x.get_revenue %}
+                                         {{x.get_revenue|floatformat:2}}
+                                            {%else%}
+                                                0
+                                        {% endif %}
+                                        </td>
+                    <td>
+                                            {% if x.get_profit  %}
+                                            {{x.get_profit | floatformat:2}}
+                                            {%else%}
+                                                0
+                                            {% endif %}
+        
+                                        </td>
+        
+        
+        
+                </tr>
+                {% endfor %}
+        
+                </tbody>
+        
+        
+            </table>
+        
+        </div>
+        <div class="d-flex justify-content-center">
+        <div class="btn btn-dark mb-2 mx-2 "> <a href="javascript:;" onclick="window.print()" class="text-white">PDF</a></div>
+        <div class="btn btn-dark mb-2 "> <a href="{% url 'sales-report-csv' %}" class="text-white">EXCEL</a></div>
+        
+        </div>
+        
+
+		
+
+	
+
+		
+		
+
+		
+
+		<!-- Start Footer Section -->
+		<footer class="footer-section">
+			<div class="container relative">
+
+				
+
+
+				
+
+				<div class="border-top copyright">
+					<div class="row pt-4">
+						<div class="col-lg-6">
+							<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a> <!-- License information: https://untree.co/license/ -->
+            </p>
+						</div>
+
+						<div class="col-lg-6 text-center text-lg-end">
+							<ul class="list-unstyled d-inline-flex ms-auto">
+								<li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</footer>
+		<!-- End Footer Section -->	
+
+    
+		<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+		<script src="{% static 'js/tiny-slider.js' %}"></script>
+		<script src="{% static 'js/custom.js' %}"></script>
+		
+			
+	</body>
+
+</html>
