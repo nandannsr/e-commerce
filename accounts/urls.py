@@ -53,6 +53,8 @@ urlpatterns = [
     path('cancel-status/',views.cancel_status,name='cancel-status'),
     path('return-status/',views.return_status,name='return-status'),
     path('order-search/',views.order_search,name='order-search'),
+    
+    #Sales Report
     path("sales-report/", views.sales_report, name="sales-report"),
     path("sales-report-csv",views.sales_export_csv,name='sales-report-csv'),
 ]

@@ -564,6 +564,10 @@ def order_search(request):
         else:
             return redirect(order_list)
         
+#*********************************#
+
+#Admin Sales report and download views#
+        
 @login_required(login_url= 'index')        
 def sales_report(request):
     if request.user.is_authenticated and request.user.is_admin:
