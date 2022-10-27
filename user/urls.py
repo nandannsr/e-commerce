@@ -20,6 +20,7 @@ urlpatterns = [
     
     #Shop views
     path('shop/',views.shop,name='shop'),
+    path('brand/<slug:brand_slug>/',views.brand_shop,name='products_by_brand'),
     path('category/<slug:category_slug>/',views.shop,name='products_by_category'),
     path('category/<slug:category_slug>/<slug:product_slug>/',views.productview,name='productview'),
     path('search/',views.search, name='search'),

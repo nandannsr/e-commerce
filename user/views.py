@@ -19,7 +19,7 @@ from cart.models import Cart, CartItem
 from cart.views import _cart_id
 import requests
 from django.db.models import Q
-
+from brand.models import Brand
 
 
 # Create your views here.
@@ -188,7 +188,7 @@ def userprofile(request):
     return render(request, 'user/userdashboard.html',context)
 
 
-def shop(request, category_slug=None, brand_slug=None):
+def shop(request, category_slug=None):
     categories = None
     products = None
     
@@ -225,6 +225,41 @@ def shop(request, category_slug=None, brand_slug=None):
         paginator = Paginator(products,3)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
+    return render(request, 'user/usershop.html', {'values': paged_products})
+
+def brand_shop(request, brand_slug=None):
+    brands = None
+    products = None
+    
+    if brand_slug != None:
+        brands = get_object_or_404(Brand, slug=brand_slug)
+        
+        products = Product.objects.filter(brand=brands, is_available=True)
+        # for checking if offer exists or not for the product
+        print(products)
+        if products:
+            
+            for product in products:  
+              if product.Offer_Price():
+                  
+                new = Product.Offer_Price(product)
+                product.offer_price = new["new_price"]
+                product.percentage = new["discount"]
+                product.save()
+                
+              else:
+                product.offer_price = 0
+                product.save()
+                
+            paginator = Paginator(products,3)
+            page = request.GET.get('page')
+            paged_products = paginator.get_page(page)
+        else:
+            messages.info(request,"No items found") 
+            return redirect(shop)   
+    else:
+        return redirect(shop)
+        
     return render(request, 'user/usershop.html', {'values': paged_products})
 
 def search(request):

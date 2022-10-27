@@ -38,6 +38,12 @@
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
+				{% for message in messages %}
+				<div class="alert alert-primary alert-dismissible fade show justify-content-center" id="message" role="alert">
+			     {{message}}
+			    <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+			     </div>
+			    {% endfor %}
 
 				<div class="collapse navbar-collapse" id="navbarsFurni">
 					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
@@ -89,6 +95,20 @@
 				   
 				   {% for category in links %}
 					  <li><a href="{{ category.get_url }}" class="list-group-item">{{ category.category_name }}<span class="float-right badge badge-light round">142</span> </a></li>
+					 {% endfor %}
+					 
+						
+				  </ul>
+			 </div>
+			 <div class="btn-group mx-3">
+				<button type="button" class="btn btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+				  By Brand
+				  </button>
+				 <ul class="dropdown-menu">
+				  <li><a href="{% url 'shop' %}" class="list-group-item">All products</a></li>
+				   
+				   {% for brands in blinks %}
+					  <li><a href="{{ brands.get_url }}" class="list-group-item">{{ brands.brand_name }}<span class="float-right badge badge-light round">142</span> </a></li>
 					 {% endfor %}
 					 
 						
