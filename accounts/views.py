@@ -238,7 +238,6 @@ def editproduct(request, id):
     #     return redirect(admin_login)
     
 @login_required(login_url= 'index') 
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def addproduct(request):
     # if 'username' in request.session:
 
@@ -246,7 +245,7 @@ def addproduct(request):
         prod_form = ProductForm(request.POST, request.FILES)
         if prod_form.is_valid():
             prod_form.save()
-            messages.success(request, 'Your category has been added sucessfully')
+            messages.success(request, 'Your Product has been added sucessfully')
         else:
             messages.error(request, 'Error')
 

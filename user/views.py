@@ -129,7 +129,11 @@ def userlogin(request):
 
  
 def userhome(request):
-    return render(request,'user/home.html')  
+    products = Product.objects.filter(category__category_name="Chairs", is_available=True)[:]
+    context= {
+        'products': products
+    }
+    return render(request,'user/home.html', context)  
 
 
 @login_required(login_url= 'userlogin')
@@ -206,7 +210,7 @@ def shop(request, category_slug=None):
             else:
                 product.offer_price = 0
                 product.save()
-        paginator = Paginator(products,3)
+        paginator = Paginator(products,6)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
     else:
@@ -222,7 +226,7 @@ def shop(request, category_slug=None):
             else:
                 product.offer_price = 0
                 product.save()
-        paginator = Paginator(products,3)
+        paginator = Paginator(products,6)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
     return render(request, 'user/usershop.html', {'values': paged_products})
@@ -251,7 +255,7 @@ def brand_shop(request, brand_slug=None):
                 product.offer_price = 0
                 product.save()
                 
-            paginator = Paginator(products,3)
+            paginator = Paginator(products,6)
             page = request.GET.get('page')
             paged_products = paginator.get_page(page)
         else:
