@@ -125,14 +125,11 @@
 							<a class="nav-link" href="{% url 'home' %}">Home</a>
 						</li>
 						<li><a class="nav-link" href="{% url 'shop' %}">Shop</a></li>
-						<li><a class="nav-link" href="#">About us</a></li>
-						<li><a class="nav-link" href="#">Services</a></li>
-						<li><a class="nav-link" href="#">Blog</a></li>
-						<li><a class="nav-link" href="#">Contact us</a></li>
+						
 					</ul>
 
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-						<li><a class="nav-link" href="#"><img src="{% static 'images/user.svg' %}"></a></li>
+						<li><a class="nav-link" href="{% url 'profile' %}"><img src="{% static 'images/user.svg' %}"></a></li>
 						<li><a class="nav-link" href="{% url 'cart' %}"><img src="{% static 'images/cart.svg' %}"></a></li>
 					</ul>
 				</div>
