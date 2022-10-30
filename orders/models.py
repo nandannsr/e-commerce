@@ -1,6 +1,4 @@
-from email.policy import default
-from enum import unique
-from unittest.util import _MAX_LENGTH
+
 from django.db import models
 from accounts.models import Account
 from product.models import Product, Variation
