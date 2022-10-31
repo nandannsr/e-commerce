@@ -210,7 +210,7 @@ def shop(request, category_slug=None):
             else:
                 product.offer_price = 0
                 product.save()
-        paginator = Paginator(products,6)
+        paginator = Paginator(products,8)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
     else:
@@ -226,7 +226,7 @@ def shop(request, category_slug=None):
             else:
                 product.offer_price = 0
                 product.save()
-        paginator = Paginator(products,6)
+        paginator = Paginator(products,8)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
     return render(request, 'user/usershop.html', {'values': paged_products})
@@ -255,7 +255,7 @@ def brand_shop(request, brand_slug=None):
                 product.offer_price = 0
                 product.save()
                 
-            paginator = Paginator(products,6)
+            paginator = Paginator(products,8)
             page = request.GET.get('page')
             paged_products = paginator.get_page(page)
         else:

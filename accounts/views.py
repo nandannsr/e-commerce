@@ -213,7 +213,7 @@ def deletebrand(request, id):
 def productList(request):
     # if 'username' in request.session:
     values = Product.objects.all().order_by('id')
-    paginator = Paginator(values,3)
+    paginator = Paginator(values,6)
     page = request.GET.get('page')
     paged_products = paginator.get_page(page)
     return render(request, 'admin/adminproduct.html', {'values': paged_products})
