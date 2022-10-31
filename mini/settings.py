@@ -98,10 +98,11 @@ AUTH_USER_MODEL = 'accounts.Account'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'neon-furni',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
+        'NAME': env("DATABASE_NAME"),
+        'USER': env("DATABASE_USER"),
+        'PASSWORD': env("DATABASE_PASS"),
+        'HOST': 'django-test.c5ndfjdyc4rz.ap-south-1.rds.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
