@@ -126,11 +126,11 @@
                             {% endif %}</h2></td>
         
                           <td> {% if x.is_active %}
-                            <a class="" href="{% url 'blockuser' x.id %}">
+                            <a class="" onclick="return confirm('Are you sure?')" href="{% url 'blockuser' x.id %}">
                              <input type="submit" value="Block" class="btn btn-dark mb-2"></input>
                             </a>
                         {% else %}
-                            <a class="" href="{% url 'unblockuser' x.id %}">
+                            <a class="" onclick="return confirm('Are you sure?')" href="{% url 'unblockuser' x.id %}">
                              <button type="submit" class="btn btn-dark mb-2">Unblock</button>
                              </a>
                         {% endif %}</td>
