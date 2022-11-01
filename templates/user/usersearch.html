@@ -80,17 +80,35 @@
 			</div>
 		<!-- End Hero Section -->
 		    
-		 <div class="card">
-			<article class="card-group-item">
-				<header class="card-header"><h6 class="title">Filter By Category</h6></header>
-				<div class="filter-content">
-					<div class="list-group list-group-flush">
-						<a href="{% url 'shop' %}" class="list-group-item">All products<span class="float-right badge badge-light round">142</span> </a>
-						{% for category in links %}
-					  <a href="{{ category.get_url }}" class="list-group-item">{{ category.category_name }}<span class="float-right badge badge-light round">142</span> </a>
+		<br>
+			<div class="btn-group mx-3">
+				<button type="button" class="btn btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+				  By Category
+				  </button>
+				 <ul class="dropdown-menu">
+				  <li><a href="{% url 'shop' %}" class="list-group-item">All products</a></li>
+				   
+				   {% for category in links %}
+					  <li><a href="{{ category.get_url }}" class="list-group-item">{{ category.category_name }}<span class="float-right badge badge-light round">142</span> </a></li>
 					 {% endfor %}
-					</div>  
-				</div> 
+					 
+						
+				  </ul>
+			 </div>
+			 <div class="btn-group mx-3">
+				<button type="button" class="btn btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+				  By Brand
+				  </button>
+				 <ul class="dropdown-menu">
+				  <li><a href="{% url 'shop' %}" class="list-group-item">All products</a></li>
+				   
+				   {% for brands in blinks %}
+					  <li><a href="{{ brands.get_url }}" class="list-group-item">{{ brands.brand_name }}<span class="float-right badge badge-light round">142</span> </a></li>
+					 {% endfor %}
+					 
+						
+				  </ul>
+			 </div>
 				
 		
 
