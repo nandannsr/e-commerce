@@ -178,14 +178,10 @@
               <div class="d-flex flex-row mt-4 align-items-center">
            <select name="color" class="mx-2 form-select rounded-pill" style="max-width: 150px; max-height: 35px;">
             <option value="" disabled selected>Choose color</option>
-            {% if single_product.variation_set.colors  %}
             {% for i in single_product.variation_set.colors %}
             <option value="{{ i.variation_value }}">{{ i.variation_value }}</option>
             {% endfor %}
            </select>
-            {% else %}
-            Only single color available
-            {% endif %}
            <select name="size" class="form-select rounded-pill" style="max-width: 150px; max-height: 35px;">
             <option value="" disabled selected>Choose size</option>
             {% for i in single_product.variation_set.sizes %}
