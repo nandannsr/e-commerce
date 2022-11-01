@@ -115,7 +115,7 @@
                                                 <td>{{order.created_at}}</td>
                                                 {% csrf_token %}
                                                 {% if order.status == 'New' %}
-                                                  <td><a href="{% url 'cancel_order' order.order_number %}" class="btn btn-sm">Cancel</a></td>
+                                                  <td><a href="{% url 'cancel_order' order.order_number %}" onclick="return confirm('Are you sure you?')" class="btn btn-sm">Cancel</a></td>
                                                 {% elif order.status == 'Delivered' %}
                                                   <td><a href="javascript: returnUserStatus('{{order.order_number}}')" onclick="return confirm('Are you sure you?')" class="btn btn-black btn-sm">Return Product</a></td>
                                                 {% elif order.status == 'Return pending' %}  
